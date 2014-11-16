@@ -43,3 +43,40 @@ module.exports.Users = function() {
   var User = mongoose.model("user", UserSchema);
   return User;
 };
+
+module.exports.Prizes = function() {
+  var PrizeSchema = new Schema({
+    day: Number,
+    name: String,
+    amount: Number,
+    img: String
+  }); 
+
+  //no indexes needed here (<100 objects)
+  var Prize = mongoose.model("prizes", PrizeSchema);
+  Prize.findOne({name: "Paardenlul"}, function(err, data) {
+    if(data === null) {
+      data = new Prize({
+        day: 0,
+        name: "Paardenlul",
+        amount: 3
+      });
+    }
+
+    data.save();
+  });
+
+  Prize.findOne({name: "PaardenVagina"}, function(err, data) {
+    if(data === null) {
+      data = new Prize({
+        day: 1,
+        name: "PaardenVagina",
+        amount: 3
+      });
+    }
+
+    data.save();
+  });
+  
+  return Prize;
+};

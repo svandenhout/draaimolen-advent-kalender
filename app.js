@@ -4,6 +4,7 @@ var express = require("express"),
     app = express(),
     db = require("./db"),
     User = db.Users(),
+    Prize = db.Prizes(),
     bodyParser = require("body-parser");
 
 app.set("view engine", "jade");
@@ -38,7 +39,7 @@ app.get("/square0", function(req, res) {
   if(checkDate(new Date(2014, 10, 16))) {
     doLottery(req, res, 0);
   }else {
-    res.send("foute Datum");
+    res.send("wrong_date");
   }
 });
 
@@ -46,7 +47,7 @@ app.get("/square1", function(req, res) {
   if(checkDate(new Date(2014, 10, 16))) {
     doLottery(req, res, 1);
   }else {
-    res.send("foute Datum");
+    res.send("wrong_date");
   }
 });
 
@@ -54,7 +55,7 @@ app.get("/square2", function(req, res) {
   if(checkDate(new Date(2014, 10, 16))) {
     doLottery(req, res, 2);
   }else {
-    res.send("foute Datum");
+    res.send("wrong_date");
   }
 });
 
@@ -62,7 +63,7 @@ app.get("/square3", function(req, res) {
   if(checkDate(new Date(2014, 10, 17))) {
     doLottery(req, res, 3);
   }else {
-    res.send("foute Datum");
+    res.send("wrong_date");
   }
 });
 
@@ -70,7 +71,7 @@ app.get("/square4", function(req, res) {
   if(checkDate(new Date(2014, 10, 17))) {
     doLottery(req, res, 4);
   }else {
-    res.send("foute Datum");
+    res.send("wrong_date");
   }
 });
 
@@ -78,7 +79,7 @@ app.get("/square5", function(req, res) {
   if(checkDate(new Date(2014, 10, 17))) {
     doLottery(req, res, 5);
   }else {
-    res.send("foute Datum");
+    res.send("wrong_date");
   }
 });
 
@@ -86,7 +87,7 @@ app.get("/square6", function(req, res) {
   if(checkDate(new Date(2014, 10, 17))) {
     doLottery(req, res, 6);
   }else {
-    res.send("foute Datum");
+    res.send("wrong_date");
   }
 });
 
@@ -94,7 +95,7 @@ app.get("/square7", function(req, res) {
   if(checkDate(new Date(2014, 10, 17))) {
     doLottery(req, res, 7);
   }else {
-    res.send("foute Datum");
+    res.send("wrong_date");
   }
 });
 
@@ -102,7 +103,7 @@ app.get("/square8", function(req, res) {
   if(checkDate(new Date(2014, 10, 17))) {
     doLottery(req, res, 8);
   }else {
-    res.send("foute Datum");
+    res.send("wrong_date");
   }
 });
 
@@ -110,38 +111,49 @@ app.get("/square9", function(req, res) {
   if(checkDate(new Date(2014, 10, 17))) {
     doLottery(req, res, 9);
   }else {
-    res.send("foute Datum");
+    res.send("wrong_date");
   }
 });
 
 var doLottery = function(req, res, index) {
-  User.findOne({id: req.query.id}, function(err, data) {
-    if(err) throw(err);
-    if(data.won[index]) {
-      res.send("allready_won");
-      return;
-    }
-    if(data.played[index]) {
-      res.send("allready_played");
+  Prize.find({$and: [
+    {day: index}, 
+    {amount: {$gt: 0}}
+  ]}, function(err, prizes) {
+    if(prizes.length < 1) {
+      res.send("price_unavailable");
       return;
     }
 
-    if(awardPrize()) {
-      data.won.set(index, true);
-      data.played.set(0, true);
-      data.save(function(err, data) {
-        if(err) throw(err);
-        res.send("won");
+    User.findOne({id: req.query.id}, function(err, user) {
+      if(err) throw(err);
+      if(user.won[index]) {
+        res.send("allready_won");
         return;
-      });
-    }else {
-      data.played.set(index, true);
-      data.save(function(err, data) {
-        if(err) throw(err);
-        res.send("lost");
+      }
+      if(user.played[index]) {
+        res.send("allready_played");
         return;
-      });
-    }
+      }
+
+      if(awardPrize()) {
+        user.won.set(index, true);
+        user.played.set(0, true);
+        prizes[0].amount -= 1;
+        user.save(function() {
+          prizes[0].save(function() {
+            res.send(prizes[0]);
+            return;
+          });
+        });
+      }else {
+        user.played.set(index, true);
+        user.save(function() {
+          res.send("lost");
+          return;
+        });
+      }
+    });
   });
 };
 
@@ -158,7 +170,7 @@ var awardPrize = function() {
     chance = 500;
     console.log("%d %d", chance, hours);
   }else if(hours < 18) {
-    chance = 250;
+    chance = 1;
     console.log("%d %d", chance, hours);
   }else if(hours < 22) {
     chance = 125;
