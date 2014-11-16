@@ -1,0 +1,14 @@
+{
+  "name": "dmKraslot",
+  "author": "steven van den hout",
+  "main": "app.js",
+  "version": "0.10.26",
+  "repository": {
+    "type": "git"
+  },
+  "dependencies": {
+    "express": "4.*",
+    "jade": "1.7.*",
+    "mongoose": "3.8.*"
+  }
+}
