@@ -16,6 +16,14 @@ app.get("/", function(req, res) {
   }
 });
 
+app.post("/", function(req, res) {
+  if(awardPrize()) {
+    res.render("index", {won: "GEWONNEN!"});
+  }else {
+    res.render("index", {won: "VERLOREN!"});
+  }
+});
+
 app.get("/square1", function(req, res) {
 
 });
