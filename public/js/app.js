@@ -11,6 +11,9 @@ window.fbAsyncInit = function() {
       FB.api('/me?fields=first_name', function(data) {
         var welcomeBlock = document.getElementById('fb-welcome');
         welcomeBlock.innerHTML = 'Hello, ' + data.first_name + '!';
+
+        // onlogin
+        $(".lottery").show();
       });
     }
   }
