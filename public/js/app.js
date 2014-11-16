@@ -42,12 +42,21 @@ window.fbAsyncInit = function() {
 
 var loginLottery = function(data) {
   $(".lottery").show();
-  
-  console.log(data);
+
   $.ajax("/user", {
     type: "POST",
     data: data
   }, function(user) {
     console.log(user);
+  });
+
+  $(".square").click(function() {
+    var square0 = $.ajax("/square" + $(this).attr("index"), {
+      data: {id: data.id}
+    });
+
+    square0.done(function(data) {
+      console.log(data);
+    });
   });
 };

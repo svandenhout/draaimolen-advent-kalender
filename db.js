@@ -35,7 +35,7 @@ module.exports.Users = function() {
 
     // day the player won
     won: [Boolean],
-    playedOnDay: [Boolean]
+    played: [Boolean]
   }); 
 
   //no indexes needed here (<100 objects)
