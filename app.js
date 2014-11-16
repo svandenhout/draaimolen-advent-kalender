@@ -1,12 +1,16 @@
 "use strict";
 
 var express = require("express"),
-    app = express();
+    app = express(),
+    db = require("./db"),
+    User = db.Users(),
+    bodyParser = require("body-parser");
 
 app.set("view engine", "jade");
 app.set("views", __dirname + "/views");
 
 app.use("/js", express.static(__dirname + "/public/js"));
+app.use(bodyParser.urlencoded());
 
 app.get("/", function(req, res) {
   if(awardPrize()) {
@@ -23,6 +27,13 @@ app.post("/", function(req, res) {
     res.render("index", {won: "VERLOREN!"});
   }
 });
+
+app.post("/user", function(req, res) {
+  console.log(req.body);
+  findOrCreateUser(req.body, function(data) {
+    res.send(data);
+  });
+})
 
 app.get("/square1", function(req, res) {
 
@@ -57,5 +68,21 @@ var awardPrize = function() {
     return false;
   }
 };
+
+var findOrCreateUser = function(body, callback) {
+  console.log(body);
+  User.findOne({id: body.id}, function(err, data) {
+    if(err) throw(err);
+    if(data === null) {
+      var club = new User(body);
+      club.save(function(err, data) {
+        if(err) throw(err);
+        callback(data);
+      });
+    }else {
+      callback(data);
+    }
+  });
+}
 
 app.listen(process.env.PORT || 3000);

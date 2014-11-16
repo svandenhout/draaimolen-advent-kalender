@@ -26,8 +26,13 @@ mongoose.connect(
 
 module.exports.Users = function() {
   var UserSchema = new Schema({
-    fbId: String,
-    
+    id: String,
+    first_name: String,
+    last_name: String,
+    name: String,
+    gender: String,
+    email: String,
+
     // day the player won
     won: [Boolean],
     playedOnDay: [Boolean]

@@ -8,12 +8,12 @@ window.fbAsyncInit = function() {
   // ADD ADDITIONAL FACEBOOK CODE HERE
   function onLogin(response) {
     if (response.status == 'connected') {
-      FB.api('/me?fields=first_name', function(data) {
+      FB.api('/me', function(data) {
         var welcomeBlock = document.getElementById('fb-welcome');
         welcomeBlock.innerHTML = 'Hello, ' + data.first_name + '!';
 
         // onlogin
-        $(".lottery").show();
+        loginLottery(data);
       });
     }
   }
@@ -39,3 +39,15 @@ window.fbAsyncInit = function() {
    js.src = "//connect.facebook.net/en_US/sdk.js";
    fjs.parentNode.insertBefore(js, fjs);
  }(document, 'script', 'facebook-jssdk'));
+
+var loginLottery = function(data) {
+  $(".lottery").show();
+  
+  console.log(data);
+  $.ajax("/user", {
+    type: "POST",
+    data: data
+  }, function(user) {
+    console.log(user);
+  });
+};
