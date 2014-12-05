@@ -1,12 +1,24 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.lottery {
+  background-color: #000;
+  margin: 0;
+  width: 100%;
+}
+
 .calendar {
   width: 731px;
   height: 1090px;
   padding: 230px 0px 0px 29px;
   background-image: url("/assets/advent-calendar-back.png"); 
+  margin: 0 auto 0 auto;
 }
 
 .candles {
-  
+
 }
 
 .calendar .square {
