@@ -5,7 +5,8 @@ var express = require("express"),
     db = require("./db"),
     User = db.Users(),
     Prize = db.Prizes(),
-    bodyParser = require("body-parser");
+    bodyParser = require("body-parser"),
+    sendgrid  = require('sendgrid')("app31666384@heroku.com", "zeedp3tr");
 
 app.set("view engine", "jade");
 app.set("views", __dirname + "/views");
@@ -39,6 +40,11 @@ app.post("/user", function(req, res) {
   findOrCreateUser(req.body, function(data) {
     res.send(data);
   });
+});
+
+app.get("/testbtns", function(req, res) {
+  res.send({name: "hallo"});
+  //res.send("lost");
 });
 
 app.get("/square0", function(req, res) {
@@ -146,6 +152,18 @@ var doLottery = function(req, res, index) {
         user.won.set(index, true);
         user.played.set(0, true);
         prizes[0].amount -= 1;
+
+        // send mail to tom
+        sendgrid.send(new sendgrid.Email({
+          to: "info@draaimolen.nu",
+          from: "advent@draaimolen.nu",
+          subject: "We hebben een winnaar",
+          text: user.name + " heeft vandaag gewonnen, email:" + user.email
+        }), function(err, json) {
+          if (err) { console.error(err); }
+          console.log(json);
+        });
+
         user.save(function() {
           prizes[0].save(function() {
             res.send(prizes[0]);
@@ -176,7 +194,7 @@ var awardPrize = function() {
     chance = 500;
     console.log("%d %d", chance, hours);
   }else if(hours < 18) {
-    chance = 250;
+    chance = 1;
     console.log("%d %d", chance, hours);
   }else if(hours < 22) {
     chance = 125;

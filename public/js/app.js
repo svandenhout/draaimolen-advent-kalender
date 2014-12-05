@@ -51,11 +51,100 @@ var loginLottery = function(data) {
   });
 
   $(".square").click(function() {
+    var square = $(this);
+    
+    // var square0 = $.ajax("/testbtns", {
+    //   data: {id: data.id}
+    // });
+
     var square0 = $.ajax("/square" + $(this).attr("index"), {
       data: {id: data.id}
     });
 
     square0.done(function(data) {
+      if(square.hasClass("button0")) {
+        if(data.name) {
+          square.css("background-image", "url('/assets/D-PRIJS.gif')");
+        }else if(data === "lost") {
+          square.css("background-image", "url('/assets/D-geen-prijs.gif')");
+        }
+      }
+
+      if(square.hasClass("button1")) {
+        if(data.name) {
+          square.css("background-image", "url('/assets/R-PRIJS.gif')");
+        }else if(data === "lost") {
+          square.css("background-image", "url('/assets/R-geen-prijs.gif')");
+        }
+      }
+
+      if(square.hasClass("button2")) {
+        if(data.name) {
+          square.css("background-image", "url('/assets/A-PRIJS.gif')");
+        }else if(data === "lost") {
+          square.css("background-image", "url('/assets/A-geen-prijs.gif')");
+        }
+      }
+
+      if(square.hasClass("button3")) {
+        if(data.name) {
+          square.css("background-image", "url('/assets/A-PRIJS.gif')");
+        }else if(data === "lost") {
+          square.css("background-image", "url('/assets/A-geen-prijs.gif')");
+        }
+      }
+
+      if(square.hasClass("button4")) {
+        if(data.name) {
+          square.css("background-image", "url('/assets/I-PRIJS.gif')");
+        }else if(data === "lost") {
+          square.css("background-image", "url('/assets/I-geen-prijs.gif')");
+        }
+      }
+
+      if(square.hasClass("button5")) {
+        if(data.name) {
+          square.css("background-image", "url('/assets/M-PRIJS.gif')");
+        }else if(data === "lost") {
+          square.css("background-image", "url('/assets/M-geen-prijs.gif')");
+        }
+      }
+
+      if(square.hasClass("button6")) {
+        if(data.name) {
+          square.css("background-image", "url('/assets/O-PRIJS.gif')");
+        }else if(data === "lost") {
+          square.css("background-image", "url('/assets/O-geen-prijs.gif')");
+        }
+      }
+
+      if(square.hasClass("button7")) {
+        if(data.name) {
+          square.css("background-image", "url('/assets/L-PRIJS.gif')");
+        }else if(data === "lost") {
+          square.css("background-image", "url('/assets/L-geen-prijs.gif')");
+        }
+      }
+
+      if(square.hasClass("button8")) {
+        if(data.name) {
+          square.css("background-image", "url('/assets/E-PRIJS.gif')");
+        }else if(data === "lost") {
+          square.css("background-image", "url('/assets/E-geen-prijs.gif')");
+        }
+      }
+
+      if(square.hasClass("button9")) {
+        if(data.name) {
+          square.css("background-image", "url('/assets/N-PRIJS.gif')");
+        }else if(data === "lost") {
+          square.css("background-image", "url('/assets/N-geen-prijs.gif')");
+        }
+      }
+      // square.addClass("animate");
+      // setTimeout(function() {
+      //   $(".popup").show();
+      // }, 2000) // 1330 s
       console.log(data);
     });
   });

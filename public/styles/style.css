@@ -10,8 +10,9 @@ body {
 }
 
 .calendar {
+  position: relative;
   width: 731px;
-  height: 1090px;
+  height: 860px;
   padding: 230px 0px 0px 29px;
   background-image: url("/assets/advent-calendar-back.png"); 
   margin: 0 auto 0 auto;
@@ -21,24 +22,60 @@ body {
   float: left;
   width: 180px;
   height: 180px;
-  background-image: url("/assets/D-static.png");
   border: none;
   margin: 13px 27px 13px 27px;
   box-shadow: 0 5px 10px #2d0b00;
   cursor: pointer;
-  animation-play-state: paused;
-  -webkit-animation-play-state: paused; /* Chrome, Safari, Opera */
 }
 
 .calendar .square:hover {
   width: 182px;
   height: 182px;
+  background-size: cover;
   margin: 12px 26px 12px 26px;
 }
+
 /* D */
 .calendar .button0 {
-
+  background-image: url("/assets/D-static.png");
 }
+
+.calendar .button1 {
+  background-image: url("/assets/R-static.png");
+}
+
+.calendar .button2 {
+  background-image: url("/assets/A-static.png");
+}
+
+.calendar .button3 {
+  background-image: url("/assets/A-static.png");
+}
+
+.calendar .button4 {
+  background-image: url("/assets/I-static.png");
+}
+
+.calendar .button5 {
+  background-image: url("/assets/M-static.png");
+}
+
+.calendar .button6 {
+  background-image: url("/assets/O-static.png");
+}
+
+.calendar .button7 {
+  background-image: url("/assets/L-static.png");
+}
+
+.calendar .button8 {
+  background-image: url("/assets/E-static.png");
+}
+
+.calendar .button9 {
+  background-image: url("/assets/N-static.png");
+}
+
 
 .calendar .button9 {
   margin-left: 261px;
@@ -46,4 +83,15 @@ body {
 
 .calendar .button9:hover {
   margin: 12px 26px 12px 260px;
+}
+
+.popup {
+  position: absolute;
+  top: 250px;
+  left: 180px;
+  width: 400px;
+  height: 200px;
+  background-color: #FFF;
+  border: solid 4px #df99ba;
+  box-shadow: 0 0 20px #000;
 }
