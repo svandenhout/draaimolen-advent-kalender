@@ -11,6 +11,8 @@ app.set("view engine", "jade");
 app.set("views", __dirname + "/views");
 
 app.use("/js", express.static(__dirname + "/public/js"));
+app.use("/styles", express.static(__dirname + "/public/styles"));
+app.use("/assets", express.static(__dirname + "/public/assets"));
 app.use(bodyParser.urlencoded());
 
 app.get("/", function(req, res) {
@@ -35,8 +37,8 @@ app.post("/user", function(req, res) {
   });
 });
 
-app.get("/square0", function(req, res) {    
-  if(checkDate(new Date(2014, 10, 16))) {
+app.get("/square0", function(req, res) {
+  if(checkDate(new Date(2014, 11, 5))) {
     doLottery(req, res, 0);
   }else {
     res.send("wrong_date");
@@ -44,7 +46,7 @@ app.get("/square0", function(req, res) {
 });
 
 app.get("/square1", function(req, res) {
-  if(checkDate(new Date(2014, 10, 16))) {
+  if(checkDate(new Date(2014, 11, 6))) {
     doLottery(req, res, 1);
   }else {
     res.send("wrong_date");
@@ -52,7 +54,7 @@ app.get("/square1", function(req, res) {
 });
 
 app.get("/square2", function(req, res) {
-  if(checkDate(new Date(2014, 10, 16))) {
+  if(checkDate(new Date(2014, 11, 7))) {
     doLottery(req, res, 2);
   }else {
     res.send("wrong_date");
@@ -60,7 +62,7 @@ app.get("/square2", function(req, res) {
 });
 
 app.get("/square3", function(req, res) {
-  if(checkDate(new Date(2014, 10, 17))) {
+  if(checkDate(new Date(2014, 11, 8))) {
     doLottery(req, res, 3);
   }else {
     res.send("wrong_date");
@@ -68,7 +70,7 @@ app.get("/square3", function(req, res) {
 });
 
 app.get("/square4", function(req, res) {
-  if(checkDate(new Date(2014, 10, 17))) {
+  if(checkDate(new Date(2014, 11, 9))) {
     doLottery(req, res, 4);
   }else {
     res.send("wrong_date");
@@ -76,7 +78,7 @@ app.get("/square4", function(req, res) {
 });
 
 app.get("/square5", function(req, res) {
-  if(checkDate(new Date(2014, 10, 17))) {
+  if(checkDate(new Date(2014, 11, 10))) {
     doLottery(req, res, 5);
   }else {
     res.send("wrong_date");
@@ -84,7 +86,7 @@ app.get("/square5", function(req, res) {
 });
 
 app.get("/square6", function(req, res) {
-  if(checkDate(new Date(2014, 10, 17))) {
+  if(checkDate(new Date(2014, 11, 11))) {
     doLottery(req, res, 6);
   }else {
     res.send("wrong_date");
@@ -92,7 +94,7 @@ app.get("/square6", function(req, res) {
 });
 
 app.get("/square7", function(req, res) {
-  if(checkDate(new Date(2014, 10, 17))) {
+  if(checkDate(new Date(2014, 11, 12))) {
     doLottery(req, res, 7);
   }else {
     res.send("wrong_date");
@@ -100,7 +102,7 @@ app.get("/square7", function(req, res) {
 });
 
 app.get("/square8", function(req, res) {
-  if(checkDate(new Date(2014, 10, 17))) {
+  if(checkDate(new Date(2014, 11, 13))) {
     doLottery(req, res, 8);
   }else {
     res.send("wrong_date");
@@ -108,7 +110,7 @@ app.get("/square8", function(req, res) {
 });
 
 app.get("/square9", function(req, res) {
-  if(checkDate(new Date(2014, 10, 17))) {
+  if(checkDate(new Date(2014, 11, 14))) {
     doLottery(req, res, 9);
   }else {
     res.send("wrong_date");
@@ -170,7 +172,7 @@ var awardPrize = function() {
     chance = 500;
     console.log("%d %d", chance, hours);
   }else if(hours < 18) {
-    chance = 1;
+    chance = 250;
     console.log("%d %d", chance, hours);
   }else if(hours < 22) {
     chance = 125;

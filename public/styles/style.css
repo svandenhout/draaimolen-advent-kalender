@@ -1,0 +1,40 @@
+.calendar {
+  width: 731px;
+  height: 1090px;
+  padding: 230px 0px 0px 29px;
+  background-image: url("/assets/advent-calendar-back.png"); 
+}
+
+.candles {
+  
+}
+
+.calendar .square {
+  float: left;
+  width: 170px;
+  height: 170px;
+  background-color: #AAA;
+  border: none;
+  margin: 18px 32px 18px 32px;
+  box-shadow: 0 5px 10px #2d0b00;
+  cursor: pointer;
+}
+
+.calendar .square:hover {
+  width: 172px;
+  height: 172px;
+  margin: 17px 31px 17px 31px;
+}
+/* D */
+.calendar .button0 {
+
+}
+
+.calendar .button9 {
+  margin-left: 266px;
+}
+
+.calendar .button9:hover {
+
+  margin: 17px 31px 17px 264px;
+}

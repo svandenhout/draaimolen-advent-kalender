@@ -1,19 +1,22 @@
 head
   script(type="text/javascript", src="/js/lib/jquery.js")
+  link(rel="stylesheet", type="text/css", href="/styles/style.css")
 
 body
   <h1 id="fb-welcome"></h1>
 
   .lottery(style="display: none;")
-    button.square(index="0")
-    button.square(index="1")
-    button.square(index="2")
-    button.square(index="3")
-    button.square(index="4")
-    button.square(index="5")
-    button.square(index="6")
-    button.square(index="7")
-    button.square(index="8")
-    button.square(index="9")
+    .candles
+    .calendar
+      .square.button0(index="0")
+      .square.button1(index="1")
+      .square.button2(index="2")
+      .square.button3(index="3")
+      .square.button4(index="4")
+      .square.button5(index="5")
+      .square.button6(index="6")
+      .square.button7(index="7")
+      .square.button8(index="8")
+      .square.button9(index="9")
 
   script(type="text/javascript", src="/js/app.js")
