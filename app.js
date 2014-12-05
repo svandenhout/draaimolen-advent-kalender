@@ -15,6 +15,10 @@ app.use("/styles", express.static(__dirname + "/public/styles"));
 app.use("/assets", express.static(__dirname + "/public/assets"));
 app.use(bodyParser.urlencoded());
 
+app.get("/termsofservice", function(req, res) {
+  res.render("termsofservice");
+});
+
 app.get("/", function(req, res) {
   if(awardPrize()) {
     res.render("index", {won: "GEWONNEN!"});

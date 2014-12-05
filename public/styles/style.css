@@ -4,7 +4,7 @@ body {
 }
 
 .lottery {
-  background-color: #000;
+  background-color: #FFF;
   margin: 0;
   width: 100%;
 }
@@ -17,25 +17,23 @@ body {
   margin: 0 auto 0 auto;
 }
 
-.candles {
-
-}
-
 .calendar .square {
   float: left;
-  width: 170px;
-  height: 170px;
-  background-color: #AAA;
+  width: 180px;
+  height: 180px;
+  background-image: url("/assets/D-static.png");
   border: none;
-  margin: 18px 32px 18px 32px;
+  margin: 13px 27px 13px 27px;
   box-shadow: 0 5px 10px #2d0b00;
   cursor: pointer;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused; /* Chrome, Safari, Opera */
 }
 
 .calendar .square:hover {
-  width: 172px;
-  height: 172px;
-  margin: 17px 31px 17px 31px;
+  width: 182px;
+  height: 182px;
+  margin: 12px 26px 12px 26px;
 }
 /* D */
 .calendar .button0 {
@@ -43,10 +41,9 @@ body {
 }
 
 .calendar .button9 {
-  margin-left: 266px;
+  margin-left: 261px;
 }
 
 .calendar .button9:hover {
-
-  margin: 17px 31px 17px 264px;
+  margin: 12px 26px 12px 260px;
 }
